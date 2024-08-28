@@ -47,7 +47,8 @@
         }
 
         .sidebar nav ul {
-            list-style-type: none;
+            list-style: none;
+            padding: 0;
         }
 
         .sidebar nav ul li {
@@ -59,12 +60,15 @@
             text-decoration: none;
             font-size: 18px;
             display: block;
-            padding: 10px 0;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, padding-left 0.3s;
         }
 
-        .sidebar nav ul li a.active {
+        .sidebar nav ul li a.active,
+        .sidebar nav ul li a:hover {
             background-color: #34495e;
-            padding-left: 10px;
+            padding-left: 20px;
         }
 
         .main-content {
@@ -92,6 +96,16 @@
             cursor: pointer;
             font-size: 16px;
             border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .header-right button a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .header-right button:hover {
+            background-color: #c0392b; /* Darker red for hover effect */
         }
 
         .content {
@@ -113,8 +127,25 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 48%;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .card a {
+            text-decoration: none;
+            color: inherit; /* Inherit color from parent */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
         }
 
         .card h3 {
@@ -154,9 +185,9 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#" class="active">Dashboard</a></li>
-                    <li><a href="#">Permintaan Surat</a></li>
-                    <li><a href="#">Surat Selesai</a></li>
+                    <li><a href="dashboardadmin" class="active">Dashboard</a></li>
+                    <li><a href="permintaansurat">Permintaan Surat</a></li>
+                    <li><a href="suratselesai">Surat Selesai</a></li>
                 </ul>
             </nav>
         </div>
@@ -168,19 +199,21 @@
                     <h1>Dashboard</h1>
                 </div>
                 <div class="header-right">
-                    <button>Logout</button>
+                    <button><a href='reservation.html'>Logout</a></button>
                 </div>
             </header>
 
             <div class="content">
                 <div class="cards">
                     <div class="card">
-                        <h3>Surat Permintaan</h3>
-                        <span>3</span>
+                        <a href='permintaansurat'>
+                            <h3>Surat Permintaan</h3>
+                        </a>
                     </div>
                     <div class="card">
-                        <h3>Surat Selesai</h3>
-                        <span>7</span>
+                        <a href='suratselesai'>
+                            <h3>Surat Selesai</h3>
+                        </a>
                     </div>
                 </div>
                 <div class="logo-box">

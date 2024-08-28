@@ -25,7 +25,7 @@
         }
 
         .sidebar {
-            width: 250px;
+            width: 335px;
             background-color: #2c3e50;
             color: white;
             height: 100vh; /* Menyesuaikan tinggi sidebar */
@@ -51,7 +51,8 @@
         }
 
         .sidebar nav ul {
-            list-style-type: none;
+            list-style: none;
+            padding: 0;
         }
 
         .sidebar nav ul li {
@@ -63,12 +64,15 @@
             text-decoration: none;
             font-size: 18px;
             display: block;
-            padding: 10px 0;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, padding-left 0.3s;
         }
 
-        .sidebar nav ul li a.active {
+        .sidebar nav ul li a.active,
+        .sidebar nav ul li a:hover {
             background-color: #34495e;
-            padding-left: 10px;
+            padding-left: 20px;
         }
 
         .main-content {
@@ -163,8 +167,8 @@
                 <ul>
                     <li><a href="dashboarduser">Dashboard</a></li>
                     <li><a href="sktm" class="active">Pengajuan SKTM</a></li>
-                    <li><a href="#">Surat Pengantar</a></li>
-                    <li><a href="reservation">Logout</a></li>
+                    <li><a href="suratpengantar">Surat Pengantar</a></li>
+                    <li><a href="reservation.html">Logout</a></li>
                 </ul>
             </nav>
         </div>
@@ -176,7 +180,9 @@
                     <h1>Surat Keterangan Tidak Mampu</h1>
                 </div>
                 <div class="header-right">
-                    <button>Logout</button>
+                    <a href='reservation.html'>
+                        <button>Logout</button>
+                    </a>
                 </div>
             </header>
 

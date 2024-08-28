@@ -21,8 +21,44 @@ route::get('/', function () {
     return view('frontend/home');
 });
 
+route::get('/dashboardadmin',function () {
+    return view('backend/admin/dashboardadmin');
+});
+
+route::get('/permintaansurat',function () {
+    return view('backend/admin/permintaansurat');
+});
+
+route::get('/suratselesai',function () {
+    return view('backend/admin/suratselesai');
+});
+
+route::get('/login',function () {
+    return view('backend/login/login');
+});
+
+route::get('/register',function () {
+    return view('backend/login/register');
+});
+
 route::get('/dashboarduser',function() {
     return view('backend/user/dashboarduser');
+});
+
+route::get('/sktm',function () {
+    return view('backend/user/sktm');
+});
+
+route::get('/sktmkesehatan',function () {
+    return view('backend/user/sktmkesehatan');
+});
+
+route::get('/sktmpendidikan',function () {
+    return view('backend/user/sktmpendidikan');
+});
+
+route::get('/suratpengantar',function () {
+    return view('backend/user/suratpengantar');
 });
 
 /*
@@ -47,31 +83,3 @@ route::controller(AuthController::class)->group(function () {
 });
 
 */
-
-route::get('/register',function () {
-    return view('backend/login/register');
-});
-
-route::get('/login',function () {
-    return view('backend/login/login');
-});
-
-route::get('/permintaansurat',function () {
-    return view('backend/admin/permintaansurat');
-});
-
-route::get('/sktmpendidikan',function () {
-    return view('backend/user/sktmpendidikan');
-});
-
-route::get('/sktm',function () {
-    return view('backend/user/sktm');
-});
-
-route::get('/sktmkesehatan',function () {
-    return view('backend/user/sktmkesehatan');
-});
-
-route::get('/pengantar',function () {
-    return view('backend/user/pengantar');
-});

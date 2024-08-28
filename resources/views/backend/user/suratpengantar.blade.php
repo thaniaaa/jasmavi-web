@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -15,112 +14,77 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f5f5f5;
-    }
 
-    .container {
-        display: flex;
-    }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    nav {
-        width: 200px;
-        background-color: #333;
-        color: white;
-        padding: 20px;
-    }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
 
-    .profile-picture {
-        text-align: center;
-        margin-bottom: 20px;
-    }
+        .container {
+            display: flex;
+        }
 
-    .profile-picture img {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-    }
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+        }
 
-    .profile-picture p {
-        margin: 10px 0 0;
-    }
+        .profile {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-    nav ul {
-        list-style-type: none;
-        padding: 0;
-    }
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
 
-    nav ul li {
-        margin: 10px 0;
-        display: flex;
-        align-items: center;
-    }
+        .sidebar nav ul {
+            list-style: none;
+            padding: 0;
+        }
 
-    nav ul li:hover {
-        background-color: #575757;
-        cursor: pointer;
-    }
+        .sidebar nav ul li {
+            margin: 10px 0;
+        }
 
-    nav ul li a {
-        text-decoration: none;
-        color: white;
-        margin-left: 10px;
-        flex-grow: 1;
-    }
+        .sidebar nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, padding-left 0.3s;
+        }
 
-    nav ul li a:hover,
-    nav ul li a:active {
-        color: white;
-        background-color: transparent;
-        text-decoration: none;
-    }
+        .sidebar nav ul li a.active,
+        .sidebar nav ul li a:hover {
+            background-color: #34495e;
+            padding-left: 20px;
+        }
 
-    .form-section {
-        flex-grow: 1;
-        padding: 20px;
-        background-color: white;
-        margin: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            margin-left: 150px;
+        }
 
-    .form-section h1 {
-        margin-bottom: 20px;
-    }
-
-    .form-section form label {
-        display: block;
-        margin: 10px 0 5px;
-    }
-
-    .form-section form input,
-    .form-section form select {
-        width: 100%;
-        padding: 8px;
-        margin-bottom: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-
-    .form-section form button {
-        padding: 10px 20px;
-        background-color: #333;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    .form-section form button:hover {
-        background-color: #575757;
-    }
-
-    header {
+        header {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -130,71 +94,125 @@
         .header-left h1 {
             font-size: 24px;
             color: #333;
+            font-weight: bold; /* Make the text bold */
         }
 
-        .logout-btn {
-            background-color: red;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
+
+        .content {
+            background-color: white;
+            padding: 20px;
             border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-    
-</style>
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .form-group label {
+            width: 20%;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 75%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-group textarea {
+            resize: none;
+            height: 100px;
+        }
+
+        .form-group input[type="submit"] {
+            width: auto;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
 <body>
-
     <div class="container">
-        <nav>
-            <div class="profile-picture">
-                <img src="profile.jpg" alt="Profile Picture">
-                <p>User</p>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="profile">
+                <img src="profile.jpg" alt="Profile Picture" class="profile-img">
+                <h2>User</h2>
             </div>
-            <ul>
-                <li><i class="fas fa-tachometer-alt"></i><a href="#">Dashboard</a></li>
-                <li><i class="fas fa-file-alt"></i><a href="sktm">Pengajuan SKTM</a></li>
-                <li><i class="fas fa-envelope"></i><a href="pengantar">Surat Pengantar</a></li>
-                <li><i class="fas fa-sign-out-alt"></i><a href="#">Logout</a></li>
-            </ul>
-        </nav>
-        
-    
-        <section class="form-section">
-            <h1>Formulir Pengajuan Surat Pengantar</h1>
-            <form action="#" method="post">
-                <label for="full-name">Nama Lengkap:</label>
-                <input type="text" id="full-name" name="full-name"><br/>
+            <nav>
+                <ul>
+                    <li><a href="dashboarduser">Dashboard</a></li>
+                    <li><a href="sktm">Pengajuan SKTM</a></li>
+                    <li><a href="suratpengantar" class="active">Surat Pengantar</a></li>
+                    <li><a href="reservation.html">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
 
-                <label for="gender">Jenis Kelamin:</label>
-                <select id="gender" name="gender">
-                    <option value="male">Laki-laki</option>
-                    <option value="female">Perempuan</option>
-                </select><br/>
+        <!-- Main Content -->
+        <div class="main-content">
+            <header>
+                <div class="header-left">
+                    <h1>Formulir Pengajuan Surat Pengantar</h1>
+                </div>
+            </header>
 
-                <label for="birth-place">Tempat, Tanggal Lahir:</label>
-                <input type="text" id="birth-place" name="birth-place"><br/>
-
-                <label for="religion">Agama:</label>
-                <input type="text" id="religion" name="religion"><br/>
-
-                <label for="nationality">Kewarganegaraan:</label>
-                <input type="text" id="nationality" name="nationality"><br/>
-
-                <label for="occupation">Pekerjaan:</label>
-                <input type="text" id="occupation" name="occupation"><br/>
-
-                <label for="marital-status">Status Perkawinan:</label>
-                <input type="text" id="marital-status" name="marital-status"><br/>
-
-                <label for="address">Alamat Tinggal:</label>
-                <input type="text" id="address" name="address"><br/>
-
-                <label for="purpose">Keperluan:</label>
-                <input type="text" id="purpose" name="purpose"><br/>
-
-                <button type="submit">Submit</button>
-            </form>
-        </section>
+            <div class="content">
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <label for="full-name">Nama Lengkap</label>
+                        <input type="text" id="full-name" name="full-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Jenis Kelamin</label>
+                        <input type="text" id="gender" name="gender">
+                    </div>
+                    <div class="form-group">
+                        <label for="birth-place">Tempat, Tanggal Lahir</label>
+                        <input type="text" id="birth-place" name="birth-place">
+                    </div>
+                    <div class="form-group">
+                        <label for="religion">Agama</label>
+                        <input type="text" id="religion" name="religion">
+                    </div>
+                    <div class="form-group">
+                        <label for="nationality">Kewarganegaraan</label>
+                        <input type="text" id="nationality" name="nationality">
+                    </div>
+                    <div class="form-group">
+                        <label for="occupation">Pekerjaan</label>
+                        <input type="text" id="occupation" name="occupation">
+                    </div>
+                    <div class="form-group">
+                        <label for="marital-status">Status Perkawinan</label>
+                        <input type="text" id="marital-status" name="marital-status">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Alamat Tinggal</label>
+                        <input type="text" id="address" name="address">
+                    </div>
+                    <div class="form-group">
+                        <label for="purpose">Keperluan</label>
+                        <textarea id="purpose" name="purpose"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </body>
 </html>

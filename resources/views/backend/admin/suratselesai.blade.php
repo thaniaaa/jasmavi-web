@@ -44,7 +44,8 @@
         }
 
         .sidebar nav ul {
-            list-style-type: none;
+            list-style: none;
+            padding: 0;
         }
 
         .sidebar nav ul li {
@@ -56,12 +57,15 @@
             text-decoration: none;
             font-size: 18px;
             display: block;
-            padding: 10px 0;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, padding-left 0.3s;
         }
 
-        .sidebar nav ul li a.active {
+        .sidebar nav ul li a.active,
+        .sidebar nav ul li a:hover {
             background-color: #34495e;
-            padding-left: 10px;
+            padding-left: 20px;
         }
 
         .main-content {
@@ -82,11 +86,27 @@
         }
 
         .logout-btn {
-            background-color: red;
+            background-color: #e74c3c;
             color: white;
             padding: 10px 20px;
             text-decoration: none;
             border-radius: 5px;
+        }
+
+        .header-right a {
+            background-color: #e74c3c;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .header-right a:hover {
+            background-color: #c0392b; /* Darker red for hover effect */
         }
 
         .content {
@@ -211,9 +231,9 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#" class="active">Dashboard</a></li>
-                    <li><a href="#">Permintaan Surat</a></li>
-                    <li><a href="#">Surat Selesai</a></li>
+                    <li><a href="dashboardadmin">Dashboard</a></li>
+                    <li><a href="permintaansurat">Permintaan Surat</a></li>
+                    <li><a href="suratselesai" class="active">Surat Selesai</a></li>
                 </ul>
             </nav>
         </div>
@@ -225,7 +245,7 @@
                     <h1>Permintaan Surat</h1>
                 </div>
                 <div class="header-right">
-                    <a href="#" class="logout-btn">Logout</a>
+                    <a href="reservation.html" class="logout-btn">Logout</a>
                 </div>
             </header>
 

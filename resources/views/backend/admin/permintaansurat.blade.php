@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
@@ -44,7 +43,8 @@
         }
 
         .sidebar nav ul {
-            list-style-type: none;
+            list-style: none;
+            padding: 0;
         }
 
         .sidebar nav ul li {
@@ -56,12 +56,15 @@
             text-decoration: none;
             font-size: 18px;
             display: block;
-            padding: 10px 0;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, padding-left 0.3s;
         }
 
-        .sidebar nav ul li a.active {
+        .sidebar nav ul li a.active,
+        .sidebar nav ul li a:hover {
             background-color: #34495e;
-            padding-left: 10px;
+            padding-left: 20px;
         }
 
         .main-content {
@@ -81,12 +84,20 @@
             color: #333;
         }
 
-        .logout-btn {
-            background-color: red;
+        .header-right a {
+            background-color: #e74c3c;
             color: white;
-            padding: 10px 20px;
             text-decoration: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
             border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .header-right a:hover {
+            background-color: #c0392b; /* Darker red for hover effect */
         }
 
         .content {
@@ -169,13 +180,10 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        
-
 
         /* Tambahan CSS untuk status dan konfirmasi */
         .status,
         .btn-confirm {
-            
             padding: 5px 10px;
             border-radius: 5px;
             color: white;
@@ -197,8 +205,6 @@
             background-color: green;
         }
     </style>
-        
-    </style>
 </head>
 
 <body>
@@ -211,9 +217,9 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#" class="active">Dashboard</a></li>
-                    <li><a href="#">Permintaan Surat</a></li>
-                    <li><a href="#">Surat Selesai</a></li>
+                    <li><a href="dashboardadmin">Dashboard</a></li>
+                    <li><a href="permintaansurat" class="active">Permintaan Surat</a></li>
+                    <li><a href="suratselesai">Surat Selesai</a></li>
                 </ul>
             </nav>
         </div>
@@ -225,7 +231,7 @@
                     <h1>Permintaan Surat</h1>
                 </div>
                 <div class="header-right">
-                    <a href="#" class="logout-btn">Logout</a>
+                    <a href="reservation.html" class="logout-btn">Logout</a>
                 </div>
             </header>
 
@@ -243,7 +249,6 @@
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </div>
 
-                
                 <table>
                     <thead>
                         <tr>

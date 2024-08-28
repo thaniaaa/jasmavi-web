@@ -258,10 +258,12 @@
                     </div>
                 </div>
 
-                <div class="search-bar">
-                    <input type="text" placeholder="Search">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                </div>
+                <form action="{{ url('/admin/surat-selesai') }}" method="GET">
+                    <div class="search-bar">
+                        <input type="text" name="search" placeholder="Search" value="{{ request('search') }}">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </div>
+                </form>
 
                 
                 <table>
@@ -275,27 +277,27 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        @foreach($requests as $request)
+                        {{-- <tr>
                             <td>8201264793</td>
                             <td>Fulan Ahihihihi</td>
                             <td>Surat Pengantar</td>
                             <td><button class="status pending" onclick="toggleStatus(this)">Selesai</button></td>
                             <td><button class="btn-confirm" onclick="confirmAction(this)">Cetak</button></td>
-                        </tr>
+                        </tr> --}}
                         <tr>
-                            <td>8201264793</td>
-                            <td>Fulan Ahahaha</td>
-                            <td>SKTM</td>
-                            <td><button class="status pending" onclick="toggleStatus(this)">Selesai</button></td>
+                            <td>{{ $request->nik }}</td>
+                            <td>{{ $request->nama_lengkap }}</td>
+                            <td>{{ $request->jenis_surat }}</td>
+                            @if($request->status_surat == 0)
+                                <td><button class="status pending">Pending</button></td>
+                            @else
+                                <td><button class="status selesai">Selesai</button></td>
+                            @endif
+                            {{-- <td><button class="btn-confirm" onclick="confirmAction(this)">Konfirmasi</button></td> --}}
                             <td><button class="btn-confirm" onclick="confirmAction(this)">Cetak</button></td>
                         </tr>
-                        <tr>
-                            <td>8201264793</td>
-                            <td>Fulan Ahehehe</td>
-                            <td>Surat Pengantar</td>
-                            <td><button class="status pending" onclick="toggleStatus(this)">Selesai</button></td>
-                            <td><button class="btn-confirm" onclick="confirmAction(this)">Cetak</button></td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

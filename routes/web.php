@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,4 +96,7 @@ Route::post('/sktm/create-kesehatan', [UserController::class,'createSktmKesehata
 Route::post('/surat-pengantar', [UserController::class,'createSuratPengantar'])->name('suratPengantar.create');
 
 //route for admin
-route::get('/admin/permintaan-surat', [AdminController::class,'viewPermintanSurat'])->name('permintaanSurat');
+route::get('/admin/permintaan-surat', [AdminController::class,'viewPermintaanSurat'])->name('permintaanSurat');
+route::get('/admin/surat-selesai', [AdminController::class,'viewSuratSelesai'])->name('suratSelesai');
+
+Route::patch('/update-status/{id}/{table_source}', [AdminController::class,'updateStatus'])->name('statusSurat.update');

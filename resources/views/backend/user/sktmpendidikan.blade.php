@@ -126,6 +126,15 @@
             border-radius: 5px;
             padding: 10px 20px;
         }
+
+        .error {
+            border-color: red;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+        }
     </style>
 </head>
 
@@ -134,7 +143,7 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <div class="profile">
-             <!--   <img src="user-icon.png" alt="User" class="profile-img">  Replace with your user icon -->
+                <!-- <img src="user-icon.png" alt="User" class="profile-img">  Replace with your user icon -->
                 <h2>PENGGUNA</h2>
             </div>
             <nav>
@@ -155,49 +164,44 @@
                 </div>
             </header>
 
-            {{-- @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif --}}
-
             <div class="content">
                 <form id="form" action="{{ route('sktmPendidikan.create') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="nama_lengkap">Nama Siswa</label>
-                        <input type="text" id="nama_lengkap" name="nama_lengkap">
+                        <input type="text" id="nama_lengkap" name="nama_lengkap" required>
                     </div>
                     <div class="form-group">
                         <label for="jenis_kelamin">Jenis Kelamin</label>
-                        <select id="jenis_kelamin" name="jenis_kelamin">
+                        <select id="jenis_kelamin" name="jenis_kelamin" required>
+                            <option value="">Pilih Jenis Kelamin</option>
                             <option value="Laki-laki">Laki-laki</option>
                             <option value="Perempuan">Perempuan</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="tempat_lahir">Tempat Lahir</label>
-                        <input type="text" id="tempat_lahir" name="tempat_lahir">
+                        <input type="text" id="tempat_lahir" name="tempat_lahir" required>
                     </div>
                     <div class="form-group">
                         <label for="tgl_lahir">Tanggal Lahir</label>
-                        <input type="date" id="tgl_lahir" name="tgl_lahir">
+                        <input type="date" id="tgl_lahir" name="tgl_lahir" required>
                     </div>
                     <div class="form-group">
                         <label for="status">Status</label>
-                        <input type="text" id="status" name="status">
+                        <input type="text" id="status" name="status" required>
                     </div>
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
-                        <input type="text" id="alamat" name="alamat">
+                        <input type="text" id="alamat" name="alamat" required>
                     </div>
                     <div class="form-group">
                         <label for="nama_kk_bapak">Nama KK/Bapak</label>
-                        <input type="text" id="nama_kk_bapak" name="nama_kk_bapak">
+                        <input type="text" id="nama_kk_bapak" name="nama_kk_bapak" required>
                     </div>
                     <div class="form-group">
                         <label for="keperluan">Keperluan</label>
-                        <textarea id="keperluan" name="keperluan"></textarea>
+                        <textarea id="keperluan" name="keperluan" required></textarea>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Submit">
@@ -206,6 +210,33 @@
             </div>
         </div>
     </div>
+
+    <!-- jQuery script for validation -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('#form').on('submit', function(event) {
+            let isValid = true;
+
+            // Clear previous errors
+            $('.form-group').removeClass('error');
+            $('.error-message').remove();
+
+            // Check each required field
+            $('#form input[required], #form select[required], #form textarea[required]').each(function() {
+                if ($(this).val().trim() === '' || ($(this).is('select') && $(this).val() === '')) {
+                    isValid = false;
+                    $(this).closest('.form-group').addClass('error');
+                    $(this).after('<div class="error-message">This field is required</div>');
+                }
+            });
+
+            if (!isValid) {
+                event.preventDefault(); // Prevent form submission if invalid
+            }
+        });
+    });
+    </script>
 </body>
 
 </html>

@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulir Pengajuan SKTM</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.19.5/jquery.validate.min.js"></script>
     <style>
+        /* Your CSS styles */
         * {
             margin: 0;
             padding: 0;
@@ -22,7 +25,7 @@
         }
 
         .sidebar {
-            width:250px;
+            width: 250px;
             background-color: #2c3e50;
             color: white;
             height: 127vh;
@@ -65,6 +68,7 @@
             background-color: #34495e;
             padding-left: 20px;
         }
+
         .main-content {
             flex-grow: 1;
             padding: 20px;
@@ -134,7 +138,7 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <div class="profile">
-              <!--  <img src="user-icon.png" alt="User" class="profile-img">  Replace with your user icon -->
+                 <!-- <img src="user-icon.png" alt="User" class="profile-img">  Replace with your user icon -->
                 <h2>PENGGUNA</h2>
             </div>
             <nav>
@@ -160,38 +164,39 @@
                     @csrf
                     <div class="form-group">
                         <label for="nama_lengkap">Nama Lengkap</label>
-                        <input type="text" id="nama_lengkap" name="nama_lengkap">
+                        <input type="text" id="nama_lengkap" name="nama_lengkap" required>
                     </div>
                     <div class="form-group">
                         <label for="jenis_kelamin">Jenis Kelamin</label>
-                        <select id="jenis_kelamin" name="jenis_kelamin">
+                        <select id="jenis_kelamin" name="jenis_kelamin" required>
+                            <option value="">Pilih Jenis Kelamin</option>
                             <option value="Laki-laki">Laki-laki</option>
                             <option value="Perempuan">Perempuan</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="tempat_lahir">Tempat Lahir</label>
-                        <input type="text" id="tempat_lahir" name="tempat_lahir">
+                        <input type="text" id="tempat_lahir" name="tempat_lahir" required>
                     </div>
                     <div class="form-group">
                         <label for="tgl_lahir">Tanggal Lahir</label>
-                        <input type="date" id="tgl_lahir" name="tgl_lahir">
+                        <input type="date" id="tgl_lahir" name="tgl_lahir" required>
                     </div>
                     <div class="form-group">
                         <label for="status">Status</label>
-                        <input type="text" id="status" name="status">
+                        <input type="text" id="status" name="status" required>
                     </div>
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
-                        <input type="text" id="alamat" name="alamat">
+                        <input type="text" id="alamat" name="alamat" required>
                     </div>
                     <div class="form-group">
                         <label for="pekerjaan">Pekerjaan</label>
-                        <input type="text" id="pekerjaan" name="pekerjaan">
+                        <input type="text" id="pekerjaan" name="pekerjaan" required>
                     </div>
                     <div class="form-group">
                         <label for="nik">NIK</label>
-                        <input type="text" id="nik" name="nik" maxlength="16" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                        <input type="text" id="nik" name="nik" maxlength="16" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
                     </div>
                     <div class="form-group">
                         <label for="nama_suami_istri">Nama Suami/Istri</label>
@@ -199,12 +204,45 @@
                     </div>
                     <div class="form-group">
                         <label for="keperluan">Keperluan</label>
-                        <textarea id="keperluan" name="keperluan"></textarea>
+                        <textarea id="keperluan" name="keperluan" required></textarea>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Submit">
                     </div>
                 </form>
+                <script>
+                    $(document).ready(function() {
+                        $("#form").validate({
+                            rules: {
+                                nama_lengkap: "required",
+                                jenis_kelamin: "required",
+                                tempat_lahir: "required",
+                                tgl_lahir: "required",
+                                status: "required",
+                                alamat: "required",
+                                pekerjaan: "required",
+                                nik: {
+                                    required: true,
+                                    digits: true,
+                                    maxlength: 16
+                                },
+                                nama_suami_istri: "required",
+                                keperluan: "required"
+                            },
+                            messages: {
+                                nama_lengkap: "Nama lengkap harus diisi",
+                                jenis_kelamin: "Jenis kelamin harus dipilih",
+                                alamat: "Alamat harus diisi",
+                                nik: {
+                                    required: "NIK harus diisi",
+                                    digits: "NIK harus berupa angka",
+                                    maxlength: "NIK tidak boleh lebih dari 16 digit"
+                                },
+                                keperluan: "Keperluan harus diisi"
+                            }
+                        });
+                    });
+                </script>
             </div>
         </div>
     </div>

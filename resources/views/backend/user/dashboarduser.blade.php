@@ -20,14 +20,19 @@
         .container {
             display: flex;
             height: 100vh;
+            overflow: hidden;
         }
 
         .sidebar {
-            width: 250px;
+            width: 300px;
             background-color: #2c3e50;
             color: white;
             height: 100%;
             padding: 20px;
+            position: sticky;
+            top: 0;
+            overflow-y: auto;
+            transition: width 0.3s;
         }
 
         .profile {
@@ -63,13 +68,14 @@
             display: block;
             padding: 10px 15px;
             border-radius: 5px;
-            transition: background-color 0.3s, padding-left 0.3s;
+            transition: background-color 0.3s, padding-left 0.3s, transform 0.3s;
         }
 
         .sidebar nav ul li a.active,
         .sidebar nav ul li a:hover {
             background-color: #34495e;
             padding-left: 20px;
+            transform: scale(1.05);
         }
 
         .main-content {
@@ -121,6 +127,12 @@
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.01);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
         }
 
         .card h3 {
@@ -179,15 +191,15 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <div class="profile">
-                <img src="admin-icon.png" alt="User" class="profile-img"> <!-- Replace with your admin icon -->
+             <!--   <img src="admin-icon.png" alt="User" class="profile-img">  Replace with your admin icon -->
                 <h2>PENGGUNA</h2>
             </div>
             <nav>
                 <ul>
                     <li><a href="" class="active">Dashboard</a></li>
                     <li><a href="sktm">Pengajuan SKTM</a></li>
-                    <li><a href="pengantar">Surat Pengantar</a></li>
-                    <li><a href="reservation">Logout</a></li>
+                    <li><a href="suratpengantar">Surat Pengantar</a></li>
+                    <li><a href="reservation.html">Logout</a></li>
                 </ul>
             </nav>
         </div>
@@ -204,8 +216,8 @@
             </header>
 
             <div class="content">
-                <div class="logo-box">
-                    <h2>LOGO</h2>
+              <!--  <div class="logo-box">
+                    <h2>LOGO</h2> -->
                 </div>
                 <div class="card">
                     <h3>Surat Pengantar</h3>

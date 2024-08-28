@@ -125,6 +125,7 @@
         .card {
             background-color: white;
             padding: 20px;
+            margin-bottom: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
@@ -211,7 +212,9 @@
                     <h1>Dashboard</h1>
                 </div>
                 <div class="header-right">
-                    <button>Logout</button>
+                    <a href='reservation.html'>
+                        <button>Logout</button>
+                    </a>
                 </div>
             </header>
 
@@ -234,8 +237,8 @@
                     <h3>Surat Keterangan Tidak Mampu (SKTM)</h3>
                     <p>Surat Keterangan Tidak Mampu (SKTM) digunakan untuk menyatakan bahwa seseorang atau keluarga tidak mampu secara finansial. SKTM dapat dibagi menjadi:</p>
                     <ul>
-                        <li><strong>SKTM Pendidikan:</strong> Digunakan untuk mendapatkan bantuan atau fasilitas pendidikan, seperti beasiswa atau keringanan biaya sekolah.</li>
-                        <li><strong>SKTM Kesehatan:</strong> Digunakan untuk mendapatkan bantuan kesehatan, seperti biaya pengobatan atau fasilitas medis di rumah sakit.</li>
+                        <li><strong>SKTM Pendidikan:</strong> digunakan untuk mendapatkan bantuan atau fasilitas pendidikan, seperti beasiswa atau keringanan biaya sekolah.</li>
+                        <li><strong>SKTM Kesehatan:</strong> digunakan untuk mendapatkan bantuan kesehatan, seperti biaya pengobatan atau fasilitas medis di rumah sakit.</li>
                     </ul>
                     <p>SKTM membantu memastikan bahwa bantuan sosial dan fasilitas lainnya diberikan kepada mereka yang benar-benar membutuhkannya.</p>
                 </div>

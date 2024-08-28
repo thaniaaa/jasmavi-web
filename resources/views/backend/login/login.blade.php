@@ -35,12 +35,19 @@
         background-color: #2980b9; 
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
         color: #fff;
     }
 
     .login-form {
         display: flex;
         flex-direction: column;
+    }
+
+    .login-form h2 {
+        text-align: center;
+        text-decoration: none;
     }
 
     .input-group {
@@ -65,8 +72,26 @@
         color: #fff;
         padding: 10px 20px;
         border: none;
+        width: 100%;
         border-radius: 5px;
         cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.1s ease; /* Smooth transition */
+    }
+
+    button[type="submit"]:hover {
+        background-color: #000066; /* Darker background on hover */
+        transform: scale(1.05); /* Slightly enlarge the button */
+        font-weight: bold;
+    }
+
+    button[type="submit"]:active {
+        background-color: #1c5980; /* Even darker background on click */
+        transform: scale(0.95); /* Slightly shrink the button */
+    }
+
+    button[type="submit"]:focus {
+        outline: 2px solid #3498db; /* Add an outline for accessibility */
+        outline-offset: 2px; /* Space between the button and outline */
     }
 
     .login-button, .signup-button {
@@ -78,31 +103,44 @@
         cursor: pointer;
         margin: 5px; 
     }
+
+    /* New styles for the link */
+    .login-form a {
+        color: #000066; /* Set the link color */
+        text-decoration: none; /* Remove underline */
+    }
+
+    .login-form a:hover {
+        color: #0000cc; /* Color change on hover */
+        text-decoration: underline; /* Optional: Add underline on hover */
+    }
 </style>
 </head>
 <body>
-         <div class="container">
-     <!--   <div class="left-side">
-           <img src="logo.png" alt="ClothCare Logo"> 
+    <div class="container">
+        <!-- <div class="left-side">
+            <img src="logo.png" alt="ClothCare Logo"> 
             <h1>JASMAVI</h1>
             <button class="login-button"><a href='dashboarduser'>LOGIN</a></button>
             <button class="signup-button"><a href='dashboardadmin'>SIGN UP</a></button> 
         </div> -->
-             <div class="right-side"> 
+        <div class="right-side"> 
             <div class="login-form">
-                <h2>Masuk</h2>
+                <h2>MASUK</h2>
                 <div class="input-group">
-                    <label for="username">No hp</label>
-                    <input type="text" id="np hp" name="no hp">
+                    <label for="username">No Hp</label>
+                    <input type="text" id="no_hp" name="no_hp">
                 </div>
                 <div class="input-group">
-                    <label for="password">Kata sandi</label>
+                    <label for="password">Kata Sandi</label>
                     <input type="password" id="password" name="password">
-                    <p>Belum punya akun? DAFTAR <p>
+                    <p>Belum punya akun? <a href='register'>Daftar</a></p>
                 </div>
-                <button type="submit">MASUK</button> 
+                    <a href='dashboarduser'>
+                        <button type="submit">Masuk</button>
+                    </a> 
+                </div>
             </div>
         </div>
-    </div>
 </body>
 </html>

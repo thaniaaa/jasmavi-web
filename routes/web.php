@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,9 +58,9 @@ route::get('/sktmpendidikan',function () {
     return view('backend/user/sktmpendidikan');
 });
 
-route::get('/suratpengantar',function () {
-    return view('backend/user/suratpengantar');
-});
+// route::get('/suratpengantar',function () {
+//     return view('backend/user/suratpengantar');
+// });
 
 /*
 route::controller(AuthController::class)->group(function () {
@@ -83,3 +84,15 @@ route::controller(AuthController::class)->group(function () {
 });
 
 */
+//route for user
+route::get('/sktm', [UserController::class,'viewSktm'])->name('sktm');
+route::get('/sktm/kesehatan', [UserController::class,'viewSktmKesehatan'])->name('sktmKesehatan');
+route::get('/sktm/pendidikan', [UserController::class,'viewSktmPendidikan'])->name('sktmPendidikan');
+route::get('/suratpengantar', [UserController::class,'viewSuratPengantar'])->name('suratPengantar');
+
+Route::post('/sktm/create-pendidikan', [UserController::class,'createSktmPendidikan'])->name('sktmPendidikan.create');
+Route::post('/sktm/create-kesehatan', [UserController::class,'createSktmKesehatan'])->name('sktmKesehatan.create');
+Route::post('/surat-pengantar', [UserController::class,'createSuratPengantar'])->name('suratPengantar.create');
+
+//route for admin
+route::get('/admin/permintaan-surat', [AdminController::class,'viewPermintanSurat'])->name('permintaanSurat');

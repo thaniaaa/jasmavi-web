@@ -103,7 +103,8 @@
         }
 
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 75%;
             padding: 10px;
             border: 1px solid #ddd;
@@ -154,19 +155,33 @@
                 </div>
             </header>
 
+            {{-- @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif --}}
+
             <div class="content">
-                <form>
+                <form id="form" action="{{ route('sktmPendidikan.create') }}" method="POST">
+                    @csrf
                     <div class="form-group">
-                        <label for="nama">Nama Siswa</label>
-                        <input type="text" id="nama" name="nama">
+                        <label for="nama_lengkap">Nama Siswa</label>
+                        <input type="text" id="nama_lengkap" name="nama_lengkap">
                     </div>
                     <div class="form-group">
-                        <label for="jenis-kelamin">Jenis Kelamin</label>
-                        <input type="text" id="jenis-kelamin" name="jenis-kelamin">
+                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                        <select id="jenis_kelamin" name="jenis_kelamin">
+                            <option value="Laki-laki">Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="ttl">Tempat, Tgl Lahir</label>
-                        <input type="text" id="ttl" name="ttl">
+                        <label for="tempat_lahir">Tempat Lahir</label>
+                        <input type="text" id="tempat_lahir" name="tempat_lahir">
+                    </div>
+                    <div class="form-group">
+                        <label for="tgl_lahir">Tanggal Lahir</label>
+                        <input type="date" id="tgl_lahir" name="tgl_lahir">
                     </div>
                     <div class="form-group">
                         <label for="status">Status</label>
@@ -177,8 +192,8 @@
                         <input type="text" id="alamat" name="alamat">
                     </div>
                     <div class="form-group">
-                        <label for="nama-kk">Nama KK/Bapak</label>
-                        <input type="text" id="nama-kk" name="nama-kk">
+                        <label for="nama_kk_bapak">Nama KK/Bapak</label>
+                        <input type="text" id="nama_kk_bapak" name="nama_kk_bapak">
                     </div>
                     <div class="form-group">
                         <label for="keperluan">Keperluan</label>

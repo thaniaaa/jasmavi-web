@@ -188,13 +188,13 @@
 
             <div class="content">
                 <div class="card">
-                    <a href="sktmkesehatan">
+                    <a href="/sktmkesehatan">
                         <h3>SKTM Kesehatan</h3>
                         <p>Formulir untuk mengajukan Surat Keterangan Tidak Mampu (SKTM) untuk keperluan kesehatan.</p>
                     </a>
                 </div>
                 <div class="card">
-                    <a href="sktmpendidikan">
+                    <a href="/sktmpendidikan">
                         <h3>SKTM Pendidikan</h3>
                         <p>Formulir untuk mengajukan Surat Keterangan Tidak Mampu (SKTM) untuk keperluan pendidikan.</p>
                     </a>

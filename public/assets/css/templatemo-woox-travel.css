@@ -490,14 +490,14 @@ Header Style
 }
 
 .header-area .main-nav .logo img {
-  width: 159px;
-  margin-top: 0 !important; /* Reset margin with !important */
+  width: 70px;
+  margin-top: 45px !important; /* Reset margin with !important */
   position: relative;
   top: -45px !important; /* Force the logo to move upwards */
 }
 
 .background-header .main-nav .logo img {
-  width: 159px;
+  width: 70px;
 }
 
 .header-area .main-nav .nav {
@@ -1370,6 +1370,7 @@ footer {
   background-color: #22b3c1;
   text-align: center;
   padding: 25px 0px;
+  margin-top: 40px;
 }
 
 footer p {

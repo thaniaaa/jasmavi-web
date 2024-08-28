@@ -155,18 +155,30 @@
             </header>
 
             <div class="content">
-                <form>
+                <form id="form" action="{{ route('sktmKesehatan.create') }}" method="POST">
+                    @csrf
                     <div class="form-group">
-                        <label for="nama">Nama Lengkap</label>
-                        <input type="text" id="nama" name="nama">
+                        <label for="nama_lengkap">Nama Lengkap</label>
+                        <input type="text" id="nama_lengkap" name="nama_lengkap">
                     </div>
                     <div class="form-group">
-                        <label for="jenis-kelamin">Jenis Kelamin</label>
-                        <input type="text" id="jenis-kelamin" name="jenis-kelamin">
+                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                        <input type="text" id="jenis_kelamin" name="jenis_kelamin">
+                    </div>
+                    {{-- <div class="form-group">
+                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                        <select id="jenis_kelamin" name="jenis_kelamin">
+                            <option value="Laki-laki">Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select>
+                    </div> --}}
+                    <div class="form-group">
+                        <label for="tempat_lahir">Tempat Lahir</label>
+                        <input type="text" id="tempat_lahir" name="tempat_lahir">
                     </div>
                     <div class="form-group">
-                        <label for="ttl">Tempat, Tgl Lahir</label>
-                        <input type="text" id="ttl" name="ttl">
+                        <label for="tgl_lahir">Tanggal Lahir</label>
+                        <input type="date" id="tgl_lahir" name="tgl_lahir">
                     </div>
                     <div class="form-group">
                         <label for="status">Status</label>
@@ -182,11 +194,11 @@
                     </div>
                     <div class="form-group">
                         <label for="nik">NIK</label>
-                        <input type="text" id="nik" name="nik">
+                        <input type="text" id="nik" name="nik" maxlength="16" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                     </div>
                     <div class="form-group">
-                        <label for="nama-suami">Nama Suami</label>
-                        <input type="text" id="nama-suami" name="nama-suami">
+                        <label for="nama_suami_istri">Nama Suami/Istri</label>
+                        <input type="text" id="nama_suami_istri" name="nama_suami_istri">
                     </div>
                     <div class="form-group">
                         <label for="keperluan">Keperluan</label>

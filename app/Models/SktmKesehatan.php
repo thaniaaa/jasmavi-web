@@ -5,25 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SuratPengantar extends Model
+class SktmKesehatan extends Model
 {
     public $timestamps = true;
-    protected $table = 'surat_pengantars';
+    protected $table = 'sktm_kesehatans';
 
     protected $fillable = [
         'nama_lengkap',
         'jenis_kelamin',
         'tempat_lahir',
         'tgl_lahir',
-        'agama',
-        'kewarganegaraan',
-        'pekerjaan',
-        'status_perkawinan',
+        'status',
         'alamat',
-        'surat_bukti',
-        'masa_berlaku',
+        'pekerjaan',
+        'nik',
+        'nama_suami_istri',
         'keperluan',
-        'keterangan',
         'status_surat',
     ];
 }

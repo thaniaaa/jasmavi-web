@@ -13,21 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('surat_pengantars', function (Blueprint $table) {
+        Schema::create('sktm_pendidikans', function (Blueprint $table) {
             $table->id();
             $table->string('nama_lengkap');
             $table->string('jenis_kelamin');
             $table->string('tempat_lahir');
             $table->date('tgl_lahir');
-            $table->string('agama');
-            $table->string('kewarganegaraan');
-            $table->string('pekerjaan');
-            $table->string('status_perkawinan');
+            $table->string('status');
             $table->string('alamat');
-            $table->string('surat_bukti');
-            $table->date('masa_berlaku');
-            $table->text('keperluan');
-            $table->text('keterangan');
+            $table->string('nama_kk_bapak');
+            $table->string('keperluan');
             $table->string('status_surat')->default('0');
             $table->timestamps();
         });
@@ -40,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('surat_pengantars');
+        Schema::dropIfExists('sktm_pendidikans');
     }
 };

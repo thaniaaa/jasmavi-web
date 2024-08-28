@@ -170,42 +170,59 @@
             </header>
 
             <div class="content">
-                <form action="#" method="post">
+                <form id="form" action="{{ route('suratPengantar.create') }}" method="POST">
+                    @csrf
                     <div class="form-group">
-                        <label for="full-name">Nama Lengkap</label>
-                        <input type="text" id="full-name" name="full-name">
+                        <label for="nama_lengkap">Nama Lengkap</label>
+                        <input type="text" id="nama_lengkap" name="nama_lengkap">
                     </div>
                     <div class="form-group">
-                        <label for="gender">Jenis Kelamin</label>
-                        <input type="text" id="gender" name="gender">
+                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                        <input type="text" id="jenis_kelamin" name="jenis_kelamin">
                     </div>
                     <div class="form-group">
-                        <label for="birth-place">Tempat, Tanggal Lahir</label>
-                        <input type="text" id="birth-place" name="birth-place">
+                        <label for="tempat_lahir">Tempat Lahir</label>
+                        <input type="text" id="tempat_lahir" name="tempat_lahir">
                     </div>
                     <div class="form-group">
-                        <label for="religion">Agama</label>
-                        <input type="text" id="religion" name="religion">
+                        <label for="tgl_lahir">Tanggal Lahir</label>
+                        <input type="date" id="tgl_lahir" name="tgl_lahir">
                     </div>
                     <div class="form-group">
-                        <label for="nationality">Kewarganegaraan</label>
-                        <input type="text" id="nationality" name="nationality">
+                        <label for="agama">Agama</label>
+                        <input type="text" id="agama" name="agama">
                     </div>
                     <div class="form-group">
-                        <label for="occupation">Pekerjaan</label>
-                        <input type="text" id="occupation" name="occupation">
+                        <label for="kewarganegaraan">Kewarganegaraan</label>
+                        <input type="text" id="kewarganegaraan" name="kewarganegaraan">
                     </div>
                     <div class="form-group">
-                        <label for="marital-status">Status Perkawinan</label>
-                        <input type="text" id="marital-status" name="marital-status">
+                        <label for="pekerjaan">Pekerjaan</label>
+                        <input type="text" id="pekerjaan" name="pekerjaan">
                     </div>
                     <div class="form-group">
-                        <label for="address">Alamat Tinggal</label>
-                        <input type="text" id="address" name="address">
+                        <label for="status_perkawinan">Status Perkawinan</label>
+                        <input type="text" id="status_perkawinan" name="status_perkawinan">
                     </div>
                     <div class="form-group">
-                        <label for="purpose">Keperluan</label>
-                        <textarea id="purpose" name="purpose"></textarea>
+                        <label for="alamat">Alamat Tinggal</label>
+                        <input type="text" id="alamat" name="alamat">
+                    </div>
+                    <div class="form-group">
+                        <label for="surat_bukti">Surat Bukti</label>
+                        <input type="text" id="surat_bukti" name="surat_bukti" maxlength="16" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                    </div>
+                    <div class="form-group">
+                        <label for="masa_berlaku">Masa Berlaku</label>
+                        <input type="date" id="masa_berlaku" name="masa_berlaku">
+                    </div>
+                    <div class="form-group">
+                        <label for="keperluan">Keperluan</label>
+                        <textarea id="keperluan" name="keperluan"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="keterangan">Keterangan</label>
+                        <textarea id="keterangan" name="keterangan"></textarea>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Submit">

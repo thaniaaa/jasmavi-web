@@ -295,7 +295,11 @@
                                 <td><button class="status selesai">Selesai</button></td>
                             @endif
                             {{-- <td><button class="btn-confirm" onclick="confirmAction(this)">Konfirmasi</button></td> --}}
-                            <td><button class="btn-confirm" onclick="confirmAction(this)">Cetak</button></td>
+                            {{-- <td><button class="btn-confirm" onclick="confirmAction(this)">Cetak</button></td>
+                             --}}
+                            <td>
+                                <a class="btn-confirm" href="{{ url('/pdf/' . $request->id . '/' . $request->table_source) }}" target="_blank" style="text-decoration: none;">Cetak</a>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

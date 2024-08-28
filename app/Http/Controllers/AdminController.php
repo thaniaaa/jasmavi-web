@@ -10,6 +10,7 @@ use App\Models\SuratPengantar;
 
 class AdminController extends Controller
 {
+    //permintaan surat
     public function viewPermintaanSurat(Request $request)
     {
         $sktmKesehatan = DB::table('sktm_kesehatans')
@@ -64,6 +65,7 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Status updated successfully!');
     }
 
+    //surat selesai
     public function viewSuratSelesai(Request $request)
     {
         $sktmKesehatan = DB::table('sktm_kesehatans')
@@ -94,4 +96,104 @@ class AdminController extends Controller
         return view('backend/admin/suratselesai', ['requests' => $requests]);
     }
 
+    public function pdfController($id, $table_source)
+    {
+        $model = null;
+        $bulanIndonesia = [
+            'January' => 'Januari',
+            'February' => 'Februari',
+            'March' => 'Maret',
+            'April' => 'April',
+            'May' => 'Mei',
+            'June' => 'Juni',
+            'July' => 'Juli',
+            'August' => 'Agustus',
+            'September' => 'September',
+            'October' => 'Oktober',
+            'November' => 'November',
+            'December' => 'Desember',
+        ];
+
+        switch ($table_source) {
+            case 'sktm_kesehatans':
+                $model = SktmKesehatan::find($id);
+                $tgl_lahir_obj = new \DateTime($model->tgl_lahir);
+                $tgl_lahir = $tgl_lahir_obj->format('d') . ' ' . $bulanIndonesia[$tgl_lahir_obj->format('F')] . ' ' . $tgl_lahir_obj->format('Y');
+                $data = [
+                    'nama_lengkap' => $model->nama_lengkap,
+                    'jenis_kelamin' => $model->jenis_kelamin,
+                    'tempat_lahir' => $model->tempat_lahir,
+                    'tgl_lahir' => $tgl_lahir,
+                    'status' => $model->status,
+                    'alamat' => $model->alamat,
+                    'pekerjaan' => $model->pekerjaan,
+                    'nik' => $model->nik,
+                    'nama_suami' => $model->nama_suami,
+                    'keperluan' => $model->keperluan,
+                    'jenis_surat' => $table_source == 'surat_pengantars' ? 'Surat Pengantar' :
+                         ($table_source == 'sktm_pendidikans' ? 'SKTM Pendidikan' :
+                         ($table_source == 'sktm_kesehatans' ? 'SKTM Kesehatan' : 'Unknown')),
+                ];
+                break;
+            case 'sktm_pendidikans':
+                $model = SktmPendidikan::find($id);
+                $tgl_lahir_obj = new \DateTime($model->tgl_lahir);
+                $tgl_lahir = $tgl_lahir_obj->format('d') . ' ' . $bulanIndonesia[$tgl_lahir_obj->format('F')] . ' ' . $tgl_lahir_obj->format('Y');
+                $data = [
+                    'nama_lengkap' => $model->nama_lengkap,
+                    'jenis_kelamin' => $model->jenis_kelamin,
+                    'tempat_lahir' => $model->tempat_lahir,
+                    'tgl_lahir' => $tgl_lahir,
+                    'status' => $model->status,
+                    'alamat' => $model->alamat,
+                    'nama_kk_bapak' => $model->nama_kk_bapak,
+                    'keperluan' => $model->keperluan,
+                    'jenis_surat' => $table_source == 'surat_pengantars' ? 'Surat Pengantar' :
+                         ($table_source == 'sktm_pendidikans' ? 'SKTM Pendidikan' :
+                         ($table_source == 'sktm_kesehatans' ? 'SKTM Kesehatan' : 'Unknown')),
+                ];
+                break;
+            case 'surat_pengantars':
+                $model = SuratPengantar::find($id);
+                $tgl_lahir_obj = new \DateTime($model->tgl_lahir);
+                $tgl_lahir = $tgl_lahir_obj->format('d') . ' ' . $bulanIndonesia[$tgl_lahir_obj->format('F')] . ' ' . $tgl_lahir_obj->format('Y');
+                $data = [
+                    'nama_lengkap' => $model->nama_lengkap,
+                    'jenis_kelamin' => $model->jenis_kelamin,
+                    'tempat_lahir' => $model->tempat_lahir,
+                    'tgl_lahir' => $tgl_lahir,
+                    'agama' => $model->agama,
+                    'kewarganegaraan' => $model->kewarganegaraan,
+                    'pekerjaan' => $model->pekerjaan,
+                    'status_perkawinan' => $model->status_perkawinan,
+                    'alamat' => $model->alamat,
+                    'surat_bukti' => $model->surat_bukti,
+                    'masa_berlaku' => $model->masa_berlaku,
+                    'keperluan' => $model->keperluan,
+                    'keterangan' => $model->keterangan,
+                    'jenis_surat' => $table_source == 'surat_pengantars' ? 'Surat Pengantar' :
+                         ($table_source == 'sktm_pendidikans' ? 'SKTM Pendidikan' :
+                         ($table_source == 'sktm_kesehatans' ? 'SKTM Kesehatan' : 'Unknown')),
+                ];
+                break;
+        }
+
+        if (!$model) {
+            return redirect()->back()->with('error', 'Data not found!');
+        }
+
+        // $data = [
+        //     'name' => $model->nama_lengkap,
+        //     'nik' => $model->nik,
+        //     'jenis_surat' => $table_source == 'surat_pengantars' ? 'Surat Pengantar' :
+        //          ($table_source == 'sktm_pendidikans' ? 'SKTM Pendidikan' :
+        //          ($table_source == 'sktm_kesehatans' ? 'SKTM Kesehatan' : 'Unknown')),
+
+        // ];
+
+        $html = view('backend/pdf/template', $data)->render();
+        $mpdf = new \Mpdf\Mpdf();
+        $mpdf->WriteHTML($html);
+        return $mpdf->Output('document.pdf', 'I');
+    }
 }

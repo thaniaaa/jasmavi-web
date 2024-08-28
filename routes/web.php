@@ -100,3 +100,5 @@ route::get('/admin/permintaan-surat', [AdminController::class,'viewPermintaanSur
 route::get('/admin/surat-selesai', [AdminController::class,'viewSuratSelesai'])->name('suratSelesai');
 
 Route::patch('/update-status/{id}/{table_source}', [AdminController::class,'updateStatus'])->name('statusSurat.update');
+
+Route::get('pdf/{id}/{table_source}', [AdminController::class, 'pdfController'])->name('viewPdf');

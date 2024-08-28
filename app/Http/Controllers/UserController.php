@@ -21,6 +21,27 @@ class UserController extends Controller
         return view('backend/user/sktmkesehatan');
     }
 
+    public function createSktmKesehatan(Request $request)
+    {
+        $validatedData = $request->validate([
+            'nama_lengkap' => 'required|string',
+            'jenis_kelamin' => 'required|string',
+            'tempat_lahir' => 'required|string',
+            'tgl_lahir' => 'required|date',
+            'status' => 'required|string',
+            'alamat' => 'required|string',
+            'pekerjaan' => 'required|string',
+            'nik' => 'required|string|max:16',
+            'nama_suami_istri' => 'required|string',
+            'keperluan' => 'required',
+        ]);
+        $sktmKesehatan = new SktmKesehatan();
+        $sktmKesehatan->fill($validatedData);
+        $sktmKesehatan->status_surat = 0;
+        $sktmKesehatan->save();
+        return redirect()->route('sktmKesehatan')->with('success', 'Data SKTM Kesehatan berhasil ditambahkan.');
+    }
+
     //pendidikan
 
     public function viewSktmPendidikan()
@@ -47,26 +68,7 @@ class UserController extends Controller
         return redirect()->route('sktmPendidikan')->with('success', 'Data SKTM Pendidikan berhasil ditambahkan.');
     }
 
-    public function createSktmKesehatan(Request $request)
-    {
-        $validatedData = $request->validate([
-            'nama_lengkap' => 'required|string',
-            'jenis_kelamin' => 'required|string',
-            'tempat_lahir' => 'required|string',
-            'tgl_lahir' => 'required|date',
-            'status' => 'required|string',
-            'alamat' => 'required|string',
-            'pekerjaan' => 'required|string',
-            'nik' => 'required|string|max:16',
-            'nama_suami_istri' => 'required|string',
-            'keperluan' => 'required',
-        ]);
-        $sktmKesehatan = new SktmKesehatan();
-        $sktmKesehatan->fill($validatedData);
-        $sktmKesehatan->status_surat = 0;
-        $sktmKesehatan->save();
-        return redirect()->route('sktmKesehatan')->with('success', 'Data SKTM Kesehatan berhasil ditambahkan.');
-    }
+    //surat pengantar
 
     public function viewSuratPengantar()
     {

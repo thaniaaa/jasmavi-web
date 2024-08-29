@@ -71,8 +71,35 @@
             transition: background-color 0.3s, padding-left 0.3s, transform 0.3s;
         }
 
+        .sidebar nav ul li form {
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, padding-left 0.3s, transform 0.3s;
+        }
+
+        .sidebar nav ul li form button {
+            width: 100%;
+            cursor: pointer;
+            text-align: left;
+            background: transparent;
+            font-size: 18px;
+            outline: 0;
+            border: 0;
+            color: white;
+        }
+
         .sidebar nav ul li a.active,
         .sidebar nav ul li a:hover {
+            background-color: #34495e;
+            padding-left: 20px;
+            transform: scale(1.05);
+        }
+        
+        .sidebar nav ul li form:hover {
             background-color: #34495e;
             padding-left: 20px;
             transform: scale(1.05);
@@ -198,9 +225,14 @@
             <nav>
                 <ul>
                     <li><a href="" class="active">Dashboard</a></li>
-                    <li><a href="sktm">Pengajuan SKTM</a></li>
-                    <li><a href="suratpengantar">Surat Pengantar</a></li>
-                    <li><a href="reservation.html">Logout</a></li>
+                    <li><a href="/sktm">Pengajuan SKTM</a></li>
+                    <li><a href="/suratpengantar">Surat Pengantar</a></li>
+                    <li>
+                        <form action="/logout" method="POST">
+                            @csrf
+                            <button type="button" onclick="alert(this)">Logout</button>
+                        </form>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -215,7 +247,7 @@
                     {{-- <a href='reservation.html'> --}}
                     <form action="/logout" method="POST">
                         @csrf
-                        <button type="submit">Logout</button>
+                        <button type="button" onclick="alert(this)">Logout</button>
                     </form>
                     {{-- </a> --}}
                 </div>
@@ -248,6 +280,25 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function alert(button) {
+            Swal.fire({
+                title: 'Apakah Anda yakin untuk logout?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#808080',
+                confirmButtonText: 'Ya, konfirmasi!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    button.closest('form').submit();
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>

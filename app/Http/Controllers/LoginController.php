@@ -22,9 +22,18 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
 
-        if(Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/dashboarduser');
+            
+            // Fetch the authenticated user
+            $user = Auth::user();
+            
+            // Redirect based on user role
+            if ($user->role === 'admin') {
+                return redirect()->intended('/dashboardadmin');
+            } else {
+                return redirect()->intended('/dashboarduser');
+            }
         }
 
         return back()->with('loginError', 'Login gagal!');

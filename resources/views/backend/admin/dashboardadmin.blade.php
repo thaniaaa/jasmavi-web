@@ -185,9 +185,9 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="dashboardadmin" class="active">Dashboard</a></li>
-                    <li><a href="permintaansurat">Permintaan Surat</a></li>
-                    <li><a href="suratselesai">Surat Selesai</a></li>
+                    <li><a href="/dashboardadmin" class="active">Dashboard</a></li>
+                    <li><a href="/admin/permintaan-surat">Permintaan Surat</a></li>
+                    <li><a href="/admin/surat-selesai">Surat Selesai</a></li>
                 </ul>
             </nav>
         </div>
@@ -199,7 +199,10 @@
                     <h1>Dashboard</h1>
                 </div>
                 <div class="header-right">
-                    <button><a href='reservation.html'>Logout</a></button>
+                    <form action="/logout" method="POST">
+                        @csrf
+                        <button type="button" onclick="alert(this)">Logout</button>
+                    </form>
                 </div>
             </header>
 
@@ -222,6 +225,25 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function alert(button) {
+            Swal.fire({
+                title: 'Apakah Anda yakin untuk logout?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#808080',
+                confirmButtonText: 'Ya, konfirmasi!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    button.closest('form').submit();
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>

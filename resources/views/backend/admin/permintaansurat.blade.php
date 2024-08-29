@@ -84,19 +84,27 @@
             color: #333;
         }
 
-        .header-right a {
+        .header-right form {
             background-color: #e74c3c;
-            color: white;
             text-decoration: none;
             padding: 10px 20px;
             cursor: pointer;
-            font-size: 16px;
             border-radius: 5px;
             display: inline-block;
             transition: background-color 0.3s, color 0.3s;
         }
 
-        .header-right a:hover {
+        .header-right form button {
+            text-decoration: none;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            color: white;
+            font-size: 16px
+        }
+
+        .header-right form:hover {
             background-color: #c0392b; /* Darker red for hover effect */
         }
 
@@ -227,9 +235,9 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="dashboardadmin">Dashboard</a></li>
+                    <li><a href="/dashboardadmin">Dashboard</a></li>
                     <li><a href="" class="active">Permintaan Surat</a></li>
-                    <li><a href="suratselesai">Surat Selesai</a></li>
+                    <li><a href="/admin/surat-selesai">Surat Selesai</a></li>
                 </ul>
             </nav>
         </div>
@@ -241,7 +249,10 @@
                     <h1>Permintaan Surat</h1>
                 </div>
                 <div class="header-right">
-                    <a href="reservation.html" class="logout-btn">Logout</a>
+                    <form action="/logout" method="POST">
+                        @csrf
+                        <button type="button" class="logout-btn" onclick="logout(this)">Logout</button>
+                    </form>
                 </div>
             </header>
 
@@ -326,6 +337,22 @@
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, konfirmasi!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    button.closest('form').submit();
+                }
+            });
+        }
+
+        function logout(button) {
+            Swal.fire({
+                title: 'Apakah Anda yakin untuk logout?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#808080',
                 confirmButtonText: 'Ya, konfirmasi!',
                 cancelButtonText: 'Batal'
             }).then((result) => {

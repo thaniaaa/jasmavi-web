@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,17 +37,20 @@ route::get('/suratselesai',function () {
     return view('backend/admin/suratselesai');
 });
 
-route::get('/login',function () {
-    return view('backend/login/login');
-});
+route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+route::post('/login', [LoginController::class, 'authenticate']);
+route::post('/logout', [LoginController::class, 'logout']);
 
-route::get('/register',function () {
-    return view('backend/login/register');
-});
+// route::get('/register',function () {
+//     return view('backend/login/register');
+// });
+
+route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+route::post('/register', [RegisterController::class, 'store']);
 
 route::get('/dashboarduser',function() {
     return view('backend/user/dashboarduser');
-});
+})->middleware('auth');
 
 route::get('/sktm',function () {
     return view('backend/user/sktm');
@@ -86,7 +91,7 @@ route::controller(AuthController::class)->group(function () {
 
 */
 //route for user
-route::get('/sktm', [UserController::class,'viewSktm'])->name('sktm');
+route::get('/sktm', [UserController::class,'viewSktm'])->name('sktm')->middleware('admin');
 route::get('/sktm/kesehatan', [UserController::class,'viewSktmKesehatan'])->name('sktmKesehatan');
 route::get('/sktm/pendidikan', [UserController::class,'viewSktmPendidikan'])->name('sktmPendidikan');
 route::get('/suratpengantar', [UserController::class,'viewSuratPengantar'])->name('suratPengantar');

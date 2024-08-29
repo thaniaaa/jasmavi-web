@@ -125,27 +125,42 @@
             <button class="login-button">LOGIN</button>
             <button class="signup-button">SIGN UP</button>
         </div> -->
-        <div class="right-side">
-            <div class="login-form">
-                <h2>DAFTAR</h2>
-                <div class="input-group">
-                    <label for="username">Nama</label>
-                    <input type="text" id="nama" name="nama">
+        <form action="/register" method="POST">
+            @csrf
+            <div class="right-side">
+                <div class="login-form">
+                    <h2>Login</h2>
+                    <div class="input-group">
+                        <label for="nama">Nama</label>
+                        <input type="text" id="nama" name="nama" class="@error('nama') is-invalid @enderror" value="{{ old('nama') }}">
+                        @error('nama')
+                        <div class="invalid-feedback" style="margin-top: 10px; font-size:80%;">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="input-group">
+                        <label for="nomor_telepon">No HP</label>
+                        <input type="text" id="nomor_telepon" name="nomor_telepon" class="@error('nomor_telepon') is-invalid @enderror" value="{{ old('nomor_telepon') }}">
+                        @error('nomor_telepon')
+                        <div class="invalid-feedback" style="margin-top: 10px; font-size:80%;">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" class="@error('password') is-invalid @enderror">
+                        @error('password')
+                        <div class="invalid-feedback" style="margin-top: 10px; font-size:80%;">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <button type="submit">LOGIN</button> 
                 </div>
-                <div class="input-group">
-                    <label for="username">No Hp</label>
-                    <input type="text" id="np hp" name="no hp">
-                </div>
-                <div class="input-group">
-                    <label for="password">Kata Sandi</label>
-                    <input type="password" id="password" name="password">
-                    <p>Sudah punya akun? <a href='login'>Masuk </a><p>
-                </div>
-                <a href='login'>
-                    <button type="submit">Daftar</button> 
-                </a>
             </div>
-        </div>
+        </form>
     </div>
 </body>
 </html>

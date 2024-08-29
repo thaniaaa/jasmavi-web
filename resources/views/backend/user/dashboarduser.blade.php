@@ -212,9 +212,12 @@
                     <h1>Dashboard</h1>
                 </div>
                 <div class="header-right">
-                    <a href='reservation.html'>
-                        <button>Logout</button>
-                    </a>
+                    {{-- <a href='reservation.html'> --}}
+                    <form action="/logout" method="POST">
+                        @csrf
+                        <button type="submit">Logout</button>
+                    </form>
+                    {{-- </a> --}}
                 </div>
             </header>
 

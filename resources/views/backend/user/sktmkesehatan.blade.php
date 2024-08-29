@@ -130,6 +130,18 @@
             border-radius: 5px;
             padding: 10px 20px;
         }
+
+        /* Efek hover pada tombol submit */
+        .form-group input[type="submit"] {
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #0056b3; /* Warna latar belakang saat hover */
+            transform: scale(1.05); /* Membesarkan tombol sedikit */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Menambahkan bayangan */
+        }
+
     </style>
 </head>
 

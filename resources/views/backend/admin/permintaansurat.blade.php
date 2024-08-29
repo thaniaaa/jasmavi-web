@@ -179,6 +179,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
         }
 
         /* Tambahan CSS untuk status dan konfirmasi */
@@ -197,12 +198,21 @@
             background-color: red;
         }
 
-        .status.selesai {
-            background-color: green;
+        .status.pending:hover {
+            background-color: red; /* Warna merah lebih gelap saat hover */
+            transform: scale(1.05); /* Membesarkan tombol sedikit */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Menambahkan bayangan */
         }
 
-        .btn-confirm {
+        .status.selesai {
             background-color: green;
+            transform: scale(1.05);
+        }
+
+        .btn-confirm:hover {
+            background-color: #218838; /* Warna hijau lebih gelap saat hover */
+            transform: scale(1.05); /* Membesarkan tombol sedikit */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Menambahkan bayangan */
         }
     </style>
 </head>
@@ -218,7 +228,7 @@
             <nav>
                 <ul>
                     <li><a href="dashboardadmin">Dashboard</a></li>
-                    <li><a href="permintaansurat" class="active">Permintaan Surat</a></li>
+                    <li><a href="" class="active">Permintaan Surat</a></li>
                     <li><a href="suratselesai">Surat Selesai</a></li>
                 </ul>
             </nav>
@@ -254,7 +264,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>NIK</th>
+                            <th>NIK / Nama KK</th>
                             <th>Nama</th>
                             <th>Jenis Surat</th>
                             <th>Status</th>

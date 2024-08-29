@@ -294,7 +294,7 @@
                                 <form action="{{ route('statusSurat.update', ['id' => $request->id, 'table_source' => $request->table_source]) }}" method="POST">
                                     @csrf
                                     @method('PATCH')
-                                    <button type="submit" class="btn-confirm">Konfirmasi</button>
+                                    <button type="button" class="btn-confirm" onclick="alert(this)">Konfirmasi</button>
                                 </form>
                             </td>
                         </tr>
@@ -305,7 +305,36 @@
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                timer: 3000,
+                showConfirmButton: false
+            });
+        @endif
+
+        function alert(button) {
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Mohon cek kembali data sebelum konfirmasi permintaan surat!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, konfirmasi!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    button.closest('form').submit();
+                }
+            });
+        }
+
         function toggleStatus(element) {
             if (element.innerText === "Pending") {
                 element.innerText = "Selesai";
@@ -316,12 +345,6 @@
                 element.classList.remove("selesai");
                 element.classList.add("pending");
             }
-        }
-
-        function confirmAction(button) {
-            // Menghapus baris dari tabel
-            var row = button.parentElement.parentElement;
-            row.remove();
         }
     </script>
 

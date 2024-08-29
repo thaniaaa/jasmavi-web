@@ -490,14 +490,14 @@ Header Style
 }
 
 .header-area .main-nav .logo img {
-  width: 70px;
-  margin-top: 45px !important; /* Reset margin with !important */
+  width: 210px;
+  margin-top: 0px !important; /* Reset margin with !important */
   position: relative;
-  top: -45px !important; /* Force the logo to move upwards */
+  top: -43px !important; /* Force the logo to move upwards */
 }
 
 .background-header .main-nav .logo img {
-  width: 70px;
+  width: 210px;
 }
 
 .header-area .main-nav .nav {
@@ -2234,6 +2234,11 @@ Deals Page Style
 
 .section-heading h2 {
   transition: color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.main-nav {
+  max-height: 70px;
 }
 
 .section-heading h2:hover {

@@ -141,6 +141,16 @@
             padding: 10px 20px;
         }
 
+        .form-group input[type="submit"] {
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #0056b3; /* Warna latar belakang saat hover */
+            transform: scale(1.05); /* Membesarkan tombol sedikit */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Menambahkan bayangan */
+        }
+
         .error {
             border-color: red;
         }
@@ -162,8 +172,8 @@
         <nav>
             <ul>
                 <li><a href="dashboarduser">Dashboard</a></li>
-                <li><a href="">Pengajuan SKTM</a></li>
-                <li><a href="suratpengantar" class="active">Surat Pengantar</a></li>
+                <li><a href="sktm">Pengajuan SKTM</a></li>
+                <li><a href="" class="active">Surat Pengantar</a></li>
                 <li><a href="reservation.html">Logout</a></li>
             </ul>
         </nav>
@@ -247,6 +257,22 @@
 <!-- jQuery script for validation -->
 <script>
     $(document).ready(function() {
+
+        // Efek interaksi dinamis
+        $("input[type='submit']").on('click', function() {
+            $(this).css({
+                'background-color': '#003d7a', // Ubah warna saat diklik
+                'transform': 'scale(0.98)' // Skala tombol sedikit lebih kecil saat klik
+            });
+            // Reset kembali ke warna asli setelah beberapa detik
+            setTimeout(function() {
+                $("input[type='submit']").css({
+                    'background-color': '#007bff',
+                    'transform': 'scale(1)'
+                });
+            }, 200); // Ubah warna kembali setelah 200ms
+        });
+
         $("#form").validate({
             rules: {
                 nama_lengkap: "required",

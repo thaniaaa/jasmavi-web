@@ -233,7 +233,7 @@
                 <ul>
                     <li><a href="dashboardadmin">Dashboard</a></li>
                     <li><a href="permintaansurat">Permintaan Surat</a></li>
-                    <li><a href="suratselesai" class="active">Surat Selesai</a></li>
+                    <li><a href="" class="active">Surat Selesai</a></li>
                 </ul>
             </nav>
         </div>

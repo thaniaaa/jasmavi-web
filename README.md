@@ -19,4 +19,4 @@
 - **HTML & CSS**: Untuk struktur dan desain halaman web.
 
 ## Penggunaan
-Untuk menggunakan fitur-fitur website ini, kunjungi www.jasmavi.com.
+Untuk menggunakan fitur-fitur website ini, kunjungi https://jatimulyo.demakkab.go.id/
